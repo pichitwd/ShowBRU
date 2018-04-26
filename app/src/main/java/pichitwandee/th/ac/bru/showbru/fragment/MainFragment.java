@@ -3,6 +3,7 @@ package pichitwandee.th.ac.bru.showbru.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +12,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import pichitwandee.th.ac.bru.showbru.R;
+import pichitwandee.th.ac.bru.showbru.utility.GetAllData;
 import pichitwandee.th.ac.bru.showbru.utility.MyAlert;
+import pichitwandee.th.ac.bru.showbru.utility.MyConstant;
 
 /**
  * Created by PChit-BRU on 25/4/2561.
@@ -54,6 +57,26 @@ public class MainFragment extends Fragment{
                             "Please Fill Ever Blank");
 
                 } else {
+                    //Not Space
+                    MyConstant myConstant = new MyConstant();
+                    boolean b = true;
+
+                    //Define Variable
+                    String truePass, nameUser;
+
+
+                    try {
+                        GetAllData getAllData = new GetAllData(getActivity());
+                        getAllData.execute(myConstant.getUrlGetAllUser());
+
+                        //Define Variable
+                        String jsonString = getAllData.get();
+                        Log.d("26AprilV1", "JSON ==>" + jsonString);
+
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
 
 
