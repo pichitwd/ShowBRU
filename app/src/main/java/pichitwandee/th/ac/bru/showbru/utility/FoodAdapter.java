@@ -60,7 +60,7 @@ public class FoodAdapter extends BaseAdapter{
         detailTextView.setText(detailStrings[i]);
 
         Picasso.get().load(imageStrings[i]).into(imageView);
-
         return view1;
+
     }
 }
