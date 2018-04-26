@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 
 import pichitwandee.th.ac.bru.showbru.R;
 
+// Fragment support v.4
 public class ServiceFragment extends Fragment{
 
     @Nullable
