@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -11,10 +12,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import pichitwandee.th.ac.bru.showbru.MainActivity;
 import pichitwandee.th.ac.bru.showbru.R;
+import pichitwandee.th.ac.bru.showbru.utility.AddNewUserToServer;
 import pichitwandee.th.ac.bru.showbru.utility.MyAlert;
+import pichitwandee.th.ac.bru.showbru.utility.MyConstant;
 
 /**
  * Created by PChit-BRU on 25/4/2561.
@@ -68,6 +72,28 @@ public class RegisterFragment extends Fragment{
         } else {
 
             //False // Not Space
+            try {
+                MyConstant myConstant = new MyConstant();
+                AddNewUserToServer addNewUserToServer = new AddNewUserToServer(getActivity());
+                addNewUserToServer.execute(nameString, userString, passwordString,
+                myConstant.getUrlAddUser());
+
+                String result = addNewUserToServer.get();
+                Log.d("26AprilV1", "result ==>" + result);
+                //Alt+6 logcat
+
+                if (Boolean.parseBoolean(result)) {
+                    //Shift + Ctrl + Enter
+                    getActivity().getSupportFragmentManager().popBackStack();
+                } else {
+                    Toast.makeText(getActivity(),"Error Cannot Upload",
+                            Toast.LENGTH_SHORT).show();
+                }
+
+            } catch (Exception e) {
+                //Shift+Ctrl+Enter
+                e.printStackTrace();
+            }
 
         }
 
@@ -102,7 +128,7 @@ public class RegisterFragment extends Fragment{
             }
         });
 
-        setHasOptionsMenu(true); // set ขอใช้เมนูบนบาร์
+        setHasOptionsMenu(true); // set to use menu bar
 
 
     }
