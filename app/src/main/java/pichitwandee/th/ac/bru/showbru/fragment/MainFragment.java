@@ -107,6 +107,11 @@ public class MainFragment extends Fragment{
                             Toast.makeText(getActivity(),"Welcome" + nameUser,
                                     Toast.LENGTH_SHORT).show();
 
+                            getActivity().getSupportFragmentManager()
+                                    .beginTransaction()
+                                    .replace(R.id.contentMainFragment, new ServiceFragment())
+                                    .commit();
+
                         } //Shift +Ctrl +Enter
                         else {
 
